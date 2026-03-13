@@ -14,6 +14,10 @@ require_relative "ssactivewear/resources/spec"
 require_relative "ssactivewear/resources/order"
 require_relative "ssactivewear/resources/invoice"
 require_relative "ssactivewear/resources/tracking"
+require_relative "ssactivewear/resources/payment_profile"
+require_relative "ssactivewear/resources/cross_reference"
+require_relative "ssactivewear/resources/return"
+require_relative "ssactivewear/resources/days_in_transit"
 require_relative "ssactivewear/client"
 
 module Ssactivewear

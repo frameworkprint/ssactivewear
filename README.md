@@ -181,6 +181,72 @@ tracking = client.tracking.list
 tracking = client.tracking.find("ABC123")
 ```
 
+### Payment Profiles
+
+```ruby
+profiles = client.payment_profiles.list(email: "billing@example.com")
+profiles.first.profile_id    # => 123456789
+profiles.first.profile_type  # => "Credit Card"
+profiles.first.name          # => "BMO Harris Bank 1234 (John Doe)"
+```
+
+### Cross References
+
+Map your internal SKUs to S&S SKUs:
+
+```ruby
+# List all cross references
+refs = client.cross_references.list
+refs.first.your_sku    # => "G2000whtxl"
+refs.first.sku         # => "B00760003"
+refs.first.brand_name  # => "Gildan"
+
+# Find by your SKU
+ref = client.cross_references.find("G2000whtxl")
+
+# Create or update a cross reference
+client.cross_references.upsert("MY-SKU-123", identifier: "B00760003")
+
+# Delete a cross reference
+client.cross_references.remove("MY-SKU-123")
+```
+
+### Returns
+
+```ruby
+# List returns
+returns = client.returns.list
+returns = client.returns.find("ABC123", lines: true, Boxes: true)
+
+# Create a return
+ret = client.returns.create(
+  shippingLabelRequired: true,
+  lines: [
+    {
+      invoiceNumber: "1234567",
+      identifier: "K22035134",
+      qty: 2,
+      returnReason: 2,
+      isReplace: true,
+      returnReasonComment: "Wrong color received"
+    }
+  ]
+)
+
+# Cancel a return (within 10 minutes)
+client.returns.cancel("9490497")
+```
+
+### Days in Transit
+
+```ruby
+result = client.days_in_transit.find("60601")
+result.zip_code  # => "60601"
+result.warehouses.first.warehouse_abbr  # => "IL"
+result.warehouses.first.days_in_transit # => 1
+result.warehouses.first.cut_off_time   # => "2:00 PM CT"
+```
+
 ### Error Handling
 
 ```ruby

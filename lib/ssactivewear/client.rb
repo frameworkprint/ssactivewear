@@ -50,6 +50,22 @@ module Ssactivewear
       Resources::Tracking.new(self)
     end
 
+    def payment_profiles
+      Resources::PaymentProfile.new(self)
+    end
+
+    def cross_references
+      Resources::CrossReference.new(self)
+    end
+
+    def returns
+      Resources::Return.new(self)
+    end
+
+    def days_in_transit
+      Resources::DaysInTransit.new(self)
+    end
+
     def get(path, params = {})
       request(:get, path, params)
     end

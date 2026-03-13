@@ -33,6 +33,10 @@ RSpec.describe Ssactivewear::Client do
     expect(client.orders).to be_a(Ssactivewear::Resources::Order)
     expect(client.invoices).to be_a(Ssactivewear::Resources::Invoice)
     expect(client.tracking).to be_a(Ssactivewear::Resources::Tracking)
+    expect(client.payment_profiles).to be_a(Ssactivewear::Resources::PaymentProfile)
+    expect(client.cross_references).to be_a(Ssactivewear::Resources::CrossReference)
+    expect(client.returns).to be_a(Ssactivewear::Resources::Return)
+    expect(client.days_in_transit).to be_a(Ssactivewear::Resources::DaysInTransit)
   end
 
   describe "error handling" do
